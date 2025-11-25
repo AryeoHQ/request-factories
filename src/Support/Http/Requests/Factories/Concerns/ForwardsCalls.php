@@ -45,7 +45,7 @@ trait ForwardsCalls
 
         $result = $this->forwardCallTo($object, $method, $parameters);
 
-        if (is_a($result, $this->proxy::class)) {
+        if ($result instanceof $this->proxy) {
             $this->proxy = $result;
 
             return $this;

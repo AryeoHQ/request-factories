@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Support\Http\Requests\Factories;
 
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\Macroable;
 use Support\Http\Requests\Factories\Proxies\Model;
@@ -69,7 +71,13 @@ abstract class Factory
     {
         $class = $this->request;
 
-        return resolve($class)->merge($attributes);
+        $instance = new $class()->merge($attributes);
+
+        if ($instance instanceof FormRequest) {
+            $instance->setContainer(app())->setRedirector(app(Redirector::class));
+        }
+
+        return $instance;
     }
 
     /**

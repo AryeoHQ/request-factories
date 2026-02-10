@@ -17,6 +17,7 @@ trait ConfirmsSequence
     {
         [$a, $b] = ['A', 'B'];
 
+        /** @var \Illuminate\Support\Collection<int, Fixtures\Requests\Request> $requests */
         $requests = Fixtures\Requests\Factory::times(2)->sequence(
             ['middle_initial' => $a],
             ['middle_initial' => $b],
@@ -36,6 +37,7 @@ trait ConfirmsSequence
             ['middle_initial' => $a],
             ['middle_initial' => $b],
         ];
+        /** @var \Illuminate\Support\Collection<int, Fixtures\Requests\Request> $requests */
         $requests = Fixtures\Requests\Factory::times(2)->forEachSequence(...$sequence)->make();
 
         $this->assertSame($a, $requests->first()->middle_initial);
@@ -54,6 +56,7 @@ trait ConfirmsSequence
             ['middle_initial' => $b, 'salutation' => $mrs],
         ]];
 
+        /** @var \Illuminate\Support\Collection<int, Fixtures\Requests\Request> $requests */
         $requests = Fixtures\Requests\Factory::times(4)->crossJoinSequence(
             ...$sequence
         )->make();

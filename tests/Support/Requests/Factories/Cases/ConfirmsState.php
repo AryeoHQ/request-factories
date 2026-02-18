@@ -17,7 +17,7 @@ trait ConfirmsState
     public function it_receives_state(): void
     {
         $note = 'Lorem ipsum.';
-        $request = Fixtures\Requests\Factory::new()->state(['note' => $note])->make();
+        $request = Fixtures\Support\Requests\Factory::new()->state(['note' => $note])->make();
 
         $this->assertSame($note, $request->note);
     }
@@ -27,7 +27,7 @@ trait ConfirmsState
     {
         $note = 'Lorem ipsum.';
 
-        $request = Fixtures\Requests\Factory::new([
+        $request = Fixtures\Support\Requests\Factory::new([
             'full_name' => fn (array $attributes) => data_get($attributes, 'first_name').' '.data_get($attributes, 'last_name'),
             'note' => fn () => $note,
         ])->make();
@@ -41,7 +41,7 @@ trait ConfirmsState
     {
         $firstName = 'Jane';
 
-        $request = Fixtures\Requests\Factory::new()->state(['first_name' => $firstName])->make();
+        $request = Fixtures\Support\Requests\Factory::new()->state(['first_name' => $firstName])->make();
 
         $this->assertSame($firstName, $request->first_name);
     }
@@ -51,7 +51,7 @@ trait ConfirmsState
     {
         [$a, $b] = ['A', 'B'];
 
-        $requests = Fixtures\Requests\Factory::times(2)->state(new Sequence(
+        $requests = Fixtures\Support\Requests\Factory::times(2)->state(new Sequence(
             ['middle_initial' => $a],
             ['middle_initial' => $b],
         ))->make();
@@ -65,7 +65,7 @@ trait ConfirmsState
     {
         $note = 'Lorem ipsum dolor sit amet.';
 
-        $request = Fixtures\Requests\Factory::new(['note' => 'Lorem ipsum.'])->state(['note' => $note])->make();
+        $request = Fixtures\Support\Requests\Factory::new(['note' => 'Lorem ipsum.'])->state(['note' => $note])->make();
 
         $this->assertSame($note, $request->note);
     }
@@ -75,7 +75,7 @@ trait ConfirmsState
     {
         $role = 'user';
 
-        $request = Fixtures\Requests\Factory::new()->admin()->state(['role' => $role])->make();
+        $request = Fixtures\Support\Requests\Factory::new()->admin()->state(['role' => $role])->make();
 
         $this->assertSame($role, $request->role);
     }
@@ -85,7 +85,7 @@ trait ConfirmsState
     {
         $firstName = 'Jane';
 
-        $request = Fixtures\Requests\Factory::new()->prependState(['first_name' => 'Joe'])->state(['first_name' => $firstName])->make();
+        $request = Fixtures\Support\Requests\Factory::new()->prependState(['first_name' => 'Joe'])->state(['first_name' => $firstName])->make();
 
         $this->assertSame($firstName, $request->first_name);
     }

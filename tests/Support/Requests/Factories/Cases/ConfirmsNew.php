@@ -16,7 +16,7 @@ trait ConfirmsNew
     #[Test]
     public function it_is_newable(): void
     {
-        $this->assertInstanceOf(Fixtures\Requests\Factory::class, Fixtures\Requests\Factory::new());
+        $this->assertInstanceOf(Fixtures\Support\Requests\Factory::class, Fixtures\Support\Requests\Factory::new());
     }
 
     #[Test]
@@ -24,7 +24,7 @@ trait ConfirmsNew
     {
         $note = 'Lorem ipsum.';
 
-        $request = Fixtures\Requests\Factory::new(['note' => $note])->make();
+        $request = Fixtures\Support\Requests\Factory::new(['note' => $note])->make();
 
         $this->assertSame($note, $request->note);
     }
@@ -34,7 +34,7 @@ trait ConfirmsNew
     {
         $note = 'Lorem ipsum.';
 
-        $request = Fixtures\Requests\Factory::new([
+        $request = Fixtures\Support\Requests\Factory::new([
             'full_name' => fn (array $attributes) => data_get($attributes, 'first_name').' '.data_get($attributes, 'last_name'),
             'note' => fn () => $note,
         ])->make();
@@ -48,7 +48,7 @@ trait ConfirmsNew
     {
         $firstName = 'Jane';
 
-        $request = Fixtures\Requests\Factory::new(['first_name' => $firstName]);
+        $request = Fixtures\Support\Requests\Factory::new(['first_name' => $firstName]);
 
         $this->assertSame($firstName, $request->make()->first_name);
     }
@@ -58,7 +58,7 @@ trait ConfirmsNew
     {
         [$a, $b] = ['A', 'B'];
 
-        $requests = Fixtures\Requests\Factory::new(new Sequence(
+        $requests = Fixtures\Support\Requests\Factory::new(new Sequence(
             ['middle_initial' => $a],
             ['middle_initial' => $b],
         ))->count(2)->make();

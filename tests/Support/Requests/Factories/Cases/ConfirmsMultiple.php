@@ -15,18 +15,18 @@ trait ConfirmsMultiple
     #[Test]
     public function it_supports_times(): void
     {
-        $requests = Fixtures\Requests\Factory::times(3)->make();
+        $requests = Fixtures\Support\Requests\Factory::times(3)->make();
 
         $this->assertCount(3, $requests);
-        $this->assertContainsOnlyInstancesOf(Fixtures\Requests\Request::class, $requests);
+        $this->assertContainsOnlyInstancesOf(Fixtures\Support\Requests\Request::class, $requests);
     }
 
     #[Test]
     public function it_supports_count(): void
     {
-        $requests = Fixtures\Requests\Factory::new()->count(3)->make();
+        $requests = Fixtures\Support\Requests\Factory::new()->count(3)->make();
 
         $this->assertCount(3, $requests);
-        $this->assertContainsOnlyInstancesOf(Fixtures\Requests\Request::class, $requests);
+        $this->assertContainsOnlyInstancesOf(Fixtures\Support\Requests\Request::class, $requests);
     }
 }

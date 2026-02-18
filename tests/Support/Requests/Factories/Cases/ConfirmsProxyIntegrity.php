@@ -22,27 +22,27 @@ trait ConfirmsProxyIntegrity
 
         tap(
             ProxyIntegrityA::new()->make(),
-            fn (Fixtures\Requests\Request $request) => $this->assertSame('John Smith', $request->full_name)
+            fn (Fixtures\Support\Requests\Request $request) => $this->assertSame('John Smith', $request->full_name)
         );
 
         tap(
             ProxyIntegrityB::new()->make(),
-            fn (Fixtures\Requests\Request $request) => $this->assertSame('Jane Doe', $request->full_name)
+            fn (Fixtures\Support\Requests\Request $request) => $this->assertSame('Jane Doe', $request->full_name)
         );
 
         tap(
             ProxyIntegrityC::new()->make(),
-            fn (Fixtures\Requests\Request $request) => $this->assertSame('Joe Johnson', $request->full_name)
+            fn (Fixtures\Support\Requests\Request $request) => $this->assertSame('Joe Johnson', $request->full_name)
         );
     }
 }
 
 /**
- * @extends \Support\Http\Requests\Factories\Factory<Fixtures\Requests\Request>
+ * @extends \Support\Http\Requests\Factories\Factory<Fixtures\Support\Requests\Request>
  */
 class ProxyIntegrityA extends Factory
 {
-    protected string $request = Fixtures\Requests\Request::class;
+    protected string $request = Fixtures\Support\Requests\Request::class;
 
     public function definition(): array
     {
@@ -55,11 +55,11 @@ class ProxyIntegrityA extends Factory
 }
 
 /**
- * @extends \Support\Http\Requests\Factories\Factory<Fixtures\Requests\Request>
+ * @extends \Support\Http\Requests\Factories\Factory<Fixtures\Support\Requests\Request>
  */
 class ProxyIntegrityB extends Factory
 {
-    protected string $request = Fixtures\Requests\Request::class;
+    protected string $request = Fixtures\Support\Requests\Request::class;
 
     public function definition(): array
     {
@@ -72,11 +72,11 @@ class ProxyIntegrityB extends Factory
 }
 
 /**
- * @extends \Support\Http\Requests\Factories\Factory<Fixtures\Requests\Request>
+ * @extends \Support\Http\Requests\Factories\Factory<Fixtures\Support\Requests\Request>
  */
 class ProxyIntegrityC extends Factory
 {
-    protected string $request = Fixtures\Requests\Request::class;
+    protected string $request = Fixtures\Support\Requests\Request::class;
 
     public function definition(): array
     {

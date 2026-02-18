@@ -26,7 +26,7 @@ class FactoryTest extends TestCase
     #[Test]
     public function it_uses_definition(): void
     {
-        $request = Fixtures\Requests\Factory::new()->make();
+        $request = Fixtures\Support\Requests\Factory::new()->make();
 
         $this->assertSame('John', $request->first_name);
         $this->assertSame('Smith', $request->last_name);
@@ -35,12 +35,12 @@ class FactoryTest extends TestCase
     #[Test]
     public function it_handles_model_factories(): void
     {
-        $request = Fixtures\Requests\Factory::new()->state([
-            'website_id' => Fixtures\Models\Website::factory(),
+        $request = Fixtures\Support\Requests\Factory::new()->state([
+            'website_id' => Fixtures\Support\Models\Website::factory(),
         ])->make();
 
         $this->assertSame(
-            Fixtures\Models\Website::first()->getKey(),
+            Fixtures\Support\Models\Website::first()->getKey(),
             $request->website_id
         );
     }

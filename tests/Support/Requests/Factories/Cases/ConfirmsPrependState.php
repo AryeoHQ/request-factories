@@ -18,7 +18,7 @@ trait ConfirmsPrependState
     {
         $note = 'Lorem ipsum.';
 
-        $request = Fixtures\Requests\Factory::new()->prependState(['note' => $note])->make();
+        $request = Fixtures\Support\Requests\Factory::new()->prependState(['note' => $note])->make();
 
         $this->assertSame($note, $request->note);
     }
@@ -28,7 +28,7 @@ trait ConfirmsPrependState
     {
         $note = 'Lorem ipsum.';
 
-        $request = Fixtures\Requests\Factory::new()->prependState([
+        $request = Fixtures\Support\Requests\Factory::new()->prependState([
             'full_name' => fn (array $attributes) => data_get($attributes, 'first_name').' '.data_get($attributes, 'last_name'),
             'note' => fn () => $note,
         ])->make();
@@ -42,7 +42,7 @@ trait ConfirmsPrependState
     {
         $firstName = 'Jane';
 
-        $request = Fixtures\Requests\Factory::new()->prependState(['first_name' => $firstName])->make();
+        $request = Fixtures\Support\Requests\Factory::new()->prependState(['first_name' => $firstName])->make();
 
         $this->assertSame($firstName, $request->first_name);
     }
@@ -52,7 +52,7 @@ trait ConfirmsPrependState
     {
         [$a, $b] = ['A', 'B'];
 
-        $requests = Fixtures\Requests\Factory::times(2)->prependState(new Sequence(
+        $requests = Fixtures\Support\Requests\Factory::times(2)->prependState(new Sequence(
             ['middle_initial' => $a],
             ['middle_initial' => $b],
         ))->make();

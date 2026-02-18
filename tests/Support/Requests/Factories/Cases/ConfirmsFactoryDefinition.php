@@ -6,7 +6,7 @@ namespace Tests\Support\Requests\Factories\Cases;
 
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Fixtures;
-use Tests\Fixtures\Requests\RequestAttributeDefinedFactory;
+use Tests\Fixtures\Support\Requests\RequestAttributeDefinedFactory;
 
 /**
  * @mixin \Tests\TestCase
@@ -17,7 +17,7 @@ trait ConfirmsFactoryDefinition
     public function it_can_define_factory_with_attribute(): void
     {
         $this->assertInstanceOf(
-            Fixtures\Requests\Factory::class,
+            Fixtures\Support\Requests\Factory::class,
             RequestAttributeDefinedFactory::factory()
         );
     }

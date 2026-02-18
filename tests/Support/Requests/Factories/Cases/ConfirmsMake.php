@@ -17,8 +17,8 @@ trait ConfirmsMake
     public function it_makes(): void
     {
         $this->assertInstanceOf(
-            Fixtures\Requests\Request::class,
-            Fixtures\Requests\Factory::new()->make(),
+            Fixtures\Support\Requests\Request::class,
+            Fixtures\Support\Requests\Factory::new()->make(),
         );
     }
 
@@ -27,7 +27,7 @@ trait ConfirmsMake
     {
         $note = 'Lorem ipsum.';
 
-        $request = Fixtures\Requests\Factory::new()->make(['note' => $note]);
+        $request = Fixtures\Support\Requests\Factory::new()->make(['note' => $note]);
 
         $this->assertSame($note, $request->note);
     }
@@ -37,7 +37,7 @@ trait ConfirmsMake
     {
         $note = 'Lorem ipsum.';
 
-        $request = Fixtures\Requests\Factory::new([
+        $request = Fixtures\Support\Requests\Factory::new([
             'full_name' => fn (array $attributes) => data_get($attributes, 'first_name').' '.data_get($attributes, 'last_name'),
             'note' => fn () => $note,
         ])->make();
@@ -51,7 +51,7 @@ trait ConfirmsMake
     {
         $firstName = 'Jane';
 
-        $request = Fixtures\Requests\Factory::new()->make(['first_name' => $firstName]);
+        $request = Fixtures\Support\Requests\Factory::new()->make(['first_name' => $firstName]);
 
         $this->assertSame($firstName, $request->first_name);
     }
@@ -61,7 +61,7 @@ trait ConfirmsMake
     {
         [$a, $b] = ['A', 'B'];
 
-        $requests = Fixtures\Requests\Factory::times(2)->make(new Sequence(
+        $requests = Fixtures\Support\Requests\Factory::times(2)->make(new Sequence(
             ['middle_initial' => $a],
             ['middle_initial' => $b],
         ));
@@ -75,7 +75,7 @@ trait ConfirmsMake
     {
         $note = 'Lorem ipsum dolor sit amet.';
 
-        $request = Fixtures\Requests\Factory::new()->state(['note' => 'Lorem ipsum.'])->make(['note' => $note]);
+        $request = Fixtures\Support\Requests\Factory::new()->state(['note' => 'Lorem ipsum.'])->make(['note' => $note]);
 
         $this->assertSame($note, $request->note);
     }
@@ -85,7 +85,7 @@ trait ConfirmsMake
     {
         $role = 'user';
 
-        $request = Fixtures\Requests\Factory::new()->admin()->make(['role' => $role]);
+        $request = Fixtures\Support\Requests\Factory::new()->admin()->make(['role' => $role]);
 
         $this->assertSame($role, $request->role);
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Fixtures\Requests\FormRequests;
+namespace Tests\Fixtures\Support\Requests\FormRequests;
 
 /**
  * @extends \Support\Http\Requests\Factories\Factory<FormRequest>

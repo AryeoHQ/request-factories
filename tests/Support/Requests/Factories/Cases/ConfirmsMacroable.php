@@ -17,9 +17,9 @@ trait ConfirmsMacroable
     public function it_can_register_macros(): void
     {
         $role = 'guest';
-        Fixtures\Requests\Factory::macro('guest', fn (): static => $this->state(['role' => $role])); // @phpstan-ignore-line
+        Fixtures\Support\Requests\Factory::macro('guest', fn (): static => $this->state(['role' => $role])); // @phpstan-ignore-line
 
-        $request = Fixtures\Requests\Factory::new()->guest()->make();
+        $request = Fixtures\Support\Requests\Factory::new()->guest()->make();
 
         $this->assertSame($role, $request->role);
     }
@@ -27,9 +27,9 @@ trait ConfirmsMacroable
     #[Test]
     public function it_can_register_mixin(): void
     {
-        Fixtures\Requests\Factory::mixin(new Guest);
+        Fixtures\Support\Requests\Factory::mixin(new Guest);
 
-        $request = Fixtures\Requests\Factory::new()->guest()->make();
+        $request = Fixtures\Support\Requests\Factory::new()->guest()->make();
 
         $this->assertSame('guest', $request->role);
     }

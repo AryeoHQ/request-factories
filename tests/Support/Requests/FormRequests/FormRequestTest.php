@@ -15,17 +15,17 @@ class FormRequestTest extends \Tests\TestCase
     public function it_interacts_with_factory(): void
     {
         $this->assertInstanceOf(
-            Fixtures\Requests\FormRequests\Factory::class,
-            Fixtures\Requests\FormRequests\FormRequest::factory(),
+            Fixtures\Support\Requests\FormRequests\Factory::class,
+            Fixtures\Support\Requests\FormRequests\FormRequest::factory(),
         );
     }
 
     #[Test]
     public function it_skips_validation_when_making(): void
     {
-        $request = Fixtures\Requests\FormRequests\FormRequest::factory()->make();
+        $request = Fixtures\Support\Requests\FormRequests\FormRequest::factory()->make();
 
-        $this->assertInstanceOf(Fixtures\Requests\FormRequests\FormRequest::class, $request);
+        $this->assertInstanceOf(Fixtures\Support\Requests\FormRequests\FormRequest::class, $request);
     }
 
     #[Test]
@@ -33,8 +33,8 @@ class FormRequestTest extends \Tests\TestCase
     {
         $this->expectException(ValidationException::class);
 
-        /** @var Fixtures\Requests\FormRequests\FormRequest */
-        $request = Fixtures\Requests\FormRequests\FormRequest::factory()->make();
+        /** @var Fixtures\Support\Requests\FormRequests\FormRequest */
+        $request = Fixtures\Support\Requests\FormRequests\FormRequest::factory()->make();
 
         $request->validated('middle_name');
     }
@@ -42,7 +42,7 @@ class FormRequestTest extends \Tests\TestCase
     #[Test]
     public function it_can_retrieve_validated_data(): void
     {
-        $request = Fixtures\Requests\FormRequests\FormRequest::factory()->middleName()->make();
+        $request = Fixtures\Support\Requests\FormRequests\FormRequest::factory()->middleName()->make();
 
         $this->assertSame(
             $request->middle_name,
@@ -53,7 +53,7 @@ class FormRequestTest extends \Tests\TestCase
     #[Test]
     public function it_retrieves_data_to_be_validated(): void
     {
-        $request = Fixtures\Requests\FormRequests\FormRequest::factory()->middleName()->make();
+        $request = Fixtures\Support\Requests\FormRequests\FormRequest::factory()->middleName()->make();
 
         $this->assertSame($request->toArray(), $request->validationData());
     }
@@ -63,7 +63,7 @@ class FormRequestTest extends \Tests\TestCase
     {
         $this->expectException(ValidationException::class);
 
-        $request = Fixtures\Requests\FormRequests\FormRequest::factory()->make();
+        $request = Fixtures\Support\Requests\FormRequests\FormRequest::factory()->make();
 
         $request->safe();
     }
@@ -71,7 +71,7 @@ class FormRequestTest extends \Tests\TestCase
     #[Test]
     public function it_can_retrieve_safe_data(): void
     {
-        $request = Fixtures\Requests\FormRequests\FormRequest::factory()->middleName()->make();
+        $request = Fixtures\Support\Requests\FormRequests\FormRequest::factory()->middleName()->make();
 
         $this->assertInstanceOf(ValidatedInput::class, $request->safe());
         $this->assertSame($request->middle_name, data_get($request->safe(), 'middle_name'));

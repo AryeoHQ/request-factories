@@ -17,7 +17,7 @@ trait ConfirmsSet
     {
         $note = 'Lorem ipsum.';
 
-        $request = Fixtures\Requests\Factory::new()->set('note', $note)->make();
+        $request = Fixtures\Support\Requests\Factory::new()->set('note', $note)->make();
 
         $this->assertSame($note, $request->note);
     }
@@ -27,7 +27,7 @@ trait ConfirmsSet
     {
         $note = 'Lorem ipsum.';
 
-        $request = Fixtures\Requests\Factory::new()->set(
+        $request = Fixtures\Support\Requests\Factory::new()->set(
             'note',
             fn () => $note
         )->set(
@@ -44,7 +44,7 @@ trait ConfirmsSet
     {
         $firstName = 'Jane';
 
-        $request = Fixtures\Requests\Factory::new()->set('first_name', $firstName)->make();
+        $request = Fixtures\Support\Requests\Factory::new()->set('first_name', $firstName)->make();
 
         $this->assertSame($firstName, $request->first_name);
     }

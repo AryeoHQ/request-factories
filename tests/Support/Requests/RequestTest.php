@@ -14,8 +14,8 @@ class RequestTest extends \Tests\TestCase
     public function it_interacts_with_factory(): void
     {
         $this->assertInstanceOf(
-            Fixtures\Requests\Factory::class,
-            Fixtures\Requests\Request::factory(),
+            Fixtures\Support\Requests\Factory::class,
+            Fixtures\Support\Requests\Request::factory(),
         );
     }
 
@@ -24,7 +24,7 @@ class RequestTest extends \Tests\TestCase
     {
         $this->expectException(NotSupported::class);
 
-        $request = Fixtures\Requests\Request::factory()->make();
+        $request = Fixtures\Support\Requests\Request::factory()->make();
 
         $request->validated('first_name');
     }
@@ -34,7 +34,7 @@ class RequestTest extends \Tests\TestCase
     {
         $this->expectException(NotSupported::class);
 
-        $request = Fixtures\Requests\Request::factory()->make();
+        $request = Fixtures\Support\Requests\Request::factory()->make();
 
         $request->safe()->only('first_name');
     }

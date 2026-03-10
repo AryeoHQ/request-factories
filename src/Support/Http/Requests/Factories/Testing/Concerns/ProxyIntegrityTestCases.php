@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Support\Requests\Factories\Cases;
+namespace Support\Http\Requests\Factories\Testing\Concerns;
 
 use PHPUnit\Framework\Attributes\Test;
 use Support\Http\Requests\Factories\Factory;
@@ -11,7 +11,7 @@ use Tests\Fixtures;
 /**
  * @mixin \Tests\TestCase
  */
-trait ConfirmsProxyIntegrity
+trait ProxyIntegrityTestCases
 {
     #[Test]
     public function it_gracefully_proxies_definition(): void

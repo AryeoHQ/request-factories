@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Support\Requests\Factories\Cases;
+namespace Support\Http\Requests\Factories\Testing\Concerns;
 
 use Closure;
 use PHPUnit\Framework\Attributes\Test;
@@ -11,7 +11,7 @@ use Tests\Fixtures;
 /**
  * @mixin \Tests\TestCase
  */
-trait ConfirmsMacroable
+trait MacroableTestCases
 {
     #[Test]
     public function it_can_register_macros(): void

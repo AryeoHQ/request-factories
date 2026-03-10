@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Support\Requests\Factories\Cases;
+namespace Support\Http\Requests\Factories\Testing\Concerns;
 
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Fixtures;
@@ -10,7 +10,7 @@ use Tests\Fixtures;
 /**
  * @mixin \Tests\TestCase
  */
-trait ConfirmsSequence
+trait SequenceTestCases
 {
     #[Test]
     public function it_supports_sequence(): void

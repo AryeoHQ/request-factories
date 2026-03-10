@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Support\Requests;
+namespace Support\Http\Requests;
 
 use PHPUnit\Framework\Attributes\Test;
 use Support\Http\Requests\Exceptions\NotSupported;

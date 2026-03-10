@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Support\Requests\FormRequests;
+namespace Support\Http\Requests\FormRequests;
 
 use Illuminate\Support\ValidatedInput;
 use Illuminate\Validation\ValidationException;

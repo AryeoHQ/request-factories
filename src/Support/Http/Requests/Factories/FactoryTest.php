@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Support\Requests\Factories;
+namespace Support\Http\Requests\Factories;
 
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Fixtures;
@@ -10,18 +10,18 @@ use Tests\TestCase;
 
 class FactoryTest extends TestCase
 {
-    use Cases\ConfirmsCustomHelpers;
-    use Cases\ConfirmsFactoryDefinition;
-    use Cases\ConfirmsMacroable;
-    use Cases\ConfirmsMake;
-    use Cases\ConfirmsMultiple;
-    use Cases\ConfirmsNew;
-    use Cases\ConfirmsPrependState;
-    use Cases\ConfirmsProxyIntegrity;
-    use Cases\ConfirmsRecycle;
-    use Cases\ConfirmsSequence;
-    use Cases\ConfirmsSet;
-    use Cases\ConfirmsState;
+    use Testing\Concerns\CustomHelpersTestCases;
+    use Testing\Concerns\FactoryDefinitionTestCases;
+    use Testing\Concerns\MacroableTestCases;
+    use Testing\Concerns\MakeTestCases;
+    use Testing\Concerns\MultipleTestCases;
+    use Testing\Concerns\NewTestCases;
+    use Testing\Concerns\PrependStateTestCases;
+    use Testing\Concerns\ProxyIntegrityTestCases;
+    use Testing\Concerns\RecycleTestCases;
+    use Testing\Concerns\SequenceTestCases;
+    use Testing\Concerns\SetTestCases;
+    use Testing\Concerns\StateTestCases;
 
     #[Test]
     public function it_uses_definition(): void

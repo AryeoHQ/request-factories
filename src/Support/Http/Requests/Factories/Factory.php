@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\Macroable;
+use ReflectionClass;
+use ReflectionMethod;
 use Support\Http\Requests\Factories\Proxies\Model;
 
 /**
@@ -122,4 +124,17 @@ abstract class Factory
      * @return array<string, mixed>
      */
     abstract public function definition(): array;
+
+    final public function invalid(): static
+    {
+        $methods = collect(new ReflectionClass(static::class)->getMethods(ReflectionMethod::IS_PUBLIC))
+            ->filter(fn (ReflectionMethod $method): bool => $method->getAttributes(Attributes\Invalid::class) !== [])
+            ->filter(fn (ReflectionMethod $method): bool => $method->getNumberOfParameters() === 0)
+            ->filter(fn (ReflectionMethod $method): bool => (string) $method->getReturnType() === 'static')
+            ->shuffle();
+
+        throw_unless($state = $methods->first()?->getName(), Exceptions\MissingInvalidState::class, $this);
+
+        return $this->$state();
+    }
 }

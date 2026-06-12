@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Fixtures\Support\Requests;
 
+use Support\Http\Requests\Factories\Attributes\Invalid;
+
 /**
  * @extends \Support\Http\Requests\Factories\Factory<Request>
  *
@@ -27,5 +29,11 @@ class Factory extends \Support\Http\Requests\Factories\Factory
     public function admin(): static
     {
         return $this->state(['role' => 'admin']);
+    }
+
+    #[Invalid]
+    public function withoutFirstName(): static
+    {
+        return $this->state(['first_name' => null]);
     }
 }

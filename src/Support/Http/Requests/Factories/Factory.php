@@ -95,6 +95,16 @@ abstract class Factory
         return static::new()->count($count);
     }
 
+    public function withFilter(string $key, mixed $value): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'filters' => [
+                ...($attributes['filters'] ?? []),
+                $key => $value,
+            ],
+        ]);
+    }
+
     private function makeProxy(): Proxies\Factory
     {
         tap(

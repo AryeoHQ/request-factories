@@ -22,6 +22,7 @@ class FactoryTest extends TestCase
     use Testing\Concerns\SequenceTestCases;
     use Testing\Concerns\SetTestCases;
     use Testing\Concerns\StateTestCases;
+    use Testing\Concerns\WithFilterTestCases;
 
     #[Test]
     public function it_uses_definition(): void

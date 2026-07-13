@@ -118,3 +118,29 @@ class UserControllerTest extends TestCase
     }
 }
 ```
+
+### Setting filters
+
+Many index or list requests accept a nested `filters` array. You could set those with `state()`, but each call replaces the entire `filters` key — so chaining filter values would drop earlier ones:
+
+```php
+// Later state calls overwrite the whole filters array
+IndexUsersRequest::factory()
+    ->state(['filters' => ['status' => 'active']])
+    ->state(['filters' => ['role' => 'admin']])
+    ->make(); // filters: ['role' => 'admin'] — status is lost
+```
+
+Use `withFilter()` instead. It merges each value into the existing `filters` array, so you can chain filters in helpers or tests without them clobbering each other:
+
+```php
+$request = IndexUsersRequest::factory()
+    ->withFilter('status', 'active')
+    ->withFilter('role', 'admin')
+    ->make();
+
+// $request->filters === ['status' => 'active', 'role' => 'admin']
+```
+
+This is especially useful when different factory states each add their own filter — for example, an `active()` state and a `forRole()` helper can be composed without one wiping out the other.
+

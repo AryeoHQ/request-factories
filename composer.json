@@ -2,7 +2,7 @@
     "name": "aryeo/request-factories",
     "description": "Eloquent-style factories for building Laravel test requests.",
     "type": "library",
-    "license": "proprietary",
+    "license": "MIT",
     "repositories": {
         "tooling-laravel": {
             "type": "vcs",
